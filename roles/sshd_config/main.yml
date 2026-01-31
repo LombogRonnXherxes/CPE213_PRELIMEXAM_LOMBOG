@@ -1,1 +1,15 @@
 ---
+  - name: Disbale root login
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      ragexp: '^#?PermitRootLogin'
+      line: "PermitRootLogin {{ permit_root_login }}"
+    notify: Restart SSH
+
+
+  - name: Disable root login
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      ragexp: '^#?PermitRootLogin'
+      line: "PermitRootLogin {{ password_authentication }}"
+    notifiy: Restart SSH
